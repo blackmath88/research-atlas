@@ -3,7 +3,7 @@
 import { chromium } from '@playwright/test';
 
 const base = process.argv[2] ?? 'http://localhost:4173/';
-const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM_PATH ?? '/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell' });
+const browser = await chromium.launch(process.env.CI ? {} : { executablePath: process.env.PW_CHROMIUM_PATH || '/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell' });
 const shots = [
   { name: 'desktop-overview', vp: { width: 1440, height: 900 }, q: '?data=./fixtures/collections.json' },
   { name: 'desktop-person', vp: { width: 1440, height: 900 }, q: '?data=./fixtures/collections.json&sel=SYNA15' },

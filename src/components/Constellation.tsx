@@ -215,7 +215,7 @@ export function Legend() {
     <div className="legend" aria-label="Legend">
       <div>
         <svg width="34" height="10" aria-hidden="true"><line className="edge edge-source" x1="2" y1="5" x2="32" y2="5" /></svg>
-        <span>Source assertion — stated by OpenAlex record</span>
+        <span>Source assertion — stated by the source record</span>
       </div>
       <div>
         <svg width="34" height="10" aria-hidden="true"><line className="edge edge-derived" x1="2" y1="5" x2="32" y2="5" /></svg>

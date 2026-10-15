@@ -32,7 +32,7 @@ export function App() {
       .then((ix) => {
         setIndex(ix);
         const ok = ix.collections.filter((c) => c.availability === 'published' && c.snapshotPath);
-        setCollection((cur) => (cur && ok.some((c) => c.id === cur) ? cur : ok[0]?.id ?? null));
+        setCollection((cur) => (cur && ok.some((c) => c.id === cur) ? cur : ok[0]?.id ?? ix.collections[0]?.id ?? null));
         if (ok.length === 0) setLoading(false);
       })
       .catch((e: unknown) => {
@@ -149,11 +149,15 @@ export function App() {
         </div>
       </header>
 
-      {entry?.availability === 'not_collected' && <p className="notice">{entry.note}</p>}
+      {entry?.availability === 'not_collected' && (
+        <p className="notice">
+          {entry.label}: {entry.note} No real research data is published in this build.
+        </p>
+      )}
       {indexError && <div className="error" role="alert">{indexError}</div>}
       {snapError && <div className="error" role="alert">{snapError}</div>}
       {loading && !indexError && <div className="loading" role="status">Loading…</div>}
-      {index && !loading && !snapshot && !indexError && !snapError && (
+      {index && !loading && !snapshot && !indexError && !snapError && entry?.availability !== 'not_collected' && (
         <div className="notice">No published collection is available yet.</div>
       )}
 

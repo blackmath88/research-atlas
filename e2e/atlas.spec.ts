@@ -49,7 +49,7 @@ test('"Why this connection?" shows shared reference evidence', async ({ page }) 
   await expect(conn).toBeVisible();
   await expect(conn).toContainText('No shared publication found in this snapshot');
   const refs = conn.getByTestId('shared-references').first();
-  await expect(refs.getByRole('link').first()).toHaveAttribute('href', /^https?:\/\//);
+  await expect(refs).toContainText(/SYNR\d+|SYNW\d+/); // synthetic refs carry IDs but no fabricated links
   await expect(conn).toContainText(/source assertions/i);
   await expect(conn).toContainText(/computed by Atlas/i);
 });

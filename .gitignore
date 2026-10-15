@@ -8,3 +8,4 @@ __pycache__/
 test-results/
 playwright-report/
 .claude/worktrees/
+tsconfig.tsbuildinfo

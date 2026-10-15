@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "id": "syn-handmade-0001",
+    "schemaVersion": 1,
+    "collectionId": "synthetic",
+    "label": "Synthetic fixture (hand-made)",
+    "synthetic": true,
+    "provider": "SYNTHETIC FIXTURE",
+    "attribution": "Invented test records. Not real research data.",
+    "query": { "note": "hand-made placeholder until the pipeline fixture is generated" },
+    "retrievedAt": "2026-01-01T00:00:00Z",
+    "status": "complete",
+    "providerTotal": 3,
+    "maxWorks": 10,
+    "counts": { "works": 3, "researchers": 3, "references": 2, "edges": 13, "candidates": 1 },
+    "missingness": {
+      "worksWithoutAbstract": 1,
+      "worksWithoutTopics": 0,
+      "worksWithoutReferences": 0,
+      "worksWithEmptyReferences": 0,
+      "authorshipsWithoutResearcherId": 1,
+      "worksWithTruncatedAuthors": 0,
+      "worksWithLargeAuthorLists": 0,
+      "externalUnresolvedReferences": 2
+    },
+    "methods": [
+      { "id": "jaccard-references@1", "label": "Shared references (Jaccard)", "description": "Two works are linked when their reference lists overlap.", "params": { "minOverlap": 1 } }
+    ],
+    "warnings": ["Hand-made synthetic fixture for UI development."]
+  },
+  "works": [
+    {
+      "id": "SYN-W1", "doi": "10.0000/syn.w1", "title": "Synthetic Study of Glacier Sensors", "year": 2019, "date": "2019-05-01", "type": "article",
+      "abstract": "An invented abstract about glacier sensors.", "abstractStatus": "present",
+      "topics": [{ "topicId": "SYN-T1", "score": 0.91, "rank": 0 }],
+      "authorships": [
+        { "researcherId": "SYN-A1", "rawName": "Ada Synthetic", "position": "first", "institutionIds": ["SYN-I1"] },
+        { "researcherId": "SYN-A3", "rawName": "Cleo Example", "position": "last", "institutionIds": [] }
+      ],
+      "authorsTruncated": false, "largeAuthorList": false,
+      "referenceIds": ["SYN-R1", "SYN-R2"], "referencesStatus": "present",
+      "provenance": { "provider": "SYNTHETIC FIXTURE", "sourceId": "https://example.invalid/works/SYN-W1", "sourceUrl": "https://example.invalid/works/SYN-W1", "retrievedAt": "2026-01-01T00:00:00Z", "contentHash": "0" }
+    },
+    {
+      "id": "SYN-W2", "doi": null, "title": "Fictional Survey of Ice Cores", "year": 2021, "date": "2021-03-01", "type": "article",
+      "abstract": null, "abstractStatus": "missing",
+      "topics": [{ "topicId": "SYN-T1", "score": 0.7, "rank": 0 }, { "topicId": "SYN-T2", "score": 0.4, "rank": 1 }],
+      "authorships": [
+        { "researcherId": "SYN-A2", "rawName": "Ben Placeholder", "position": "first", "institutionIds": ["SYN-I1"] }
+      ],
+      "authorsTruncated": false, "largeAuthorList": false,
+      "referenceIds": ["SYN-R1", "SYN-R2"], "referencesStatus": "present",
+      "provenance": { "provider": "SYNTHETIC FIXTURE", "sourceId": "https://example.invalid/works/SYN-W2", "sourceUrl": "https://example.invalid/works/SYN-W2", "retrievedAt": "2026-01-01T00:00:00Z", "contentHash": "0" }
+    },
+    {
+      "id": "SYN-W3", "doi": null, "title": "Made-up Follow-up on Sensors", "year": 2022, "date": "2022-01-01", "type": "preprint",
+      "abstract": "Invented follow-up.", "abstractStatus": "present",
+      "topics": [{ "topicId": "SYN-T2", "score": 0.6, "rank": 0 }],
+      "authorships": [
+        { "researcherId": "SYN-A1", "rawName": "Ada Synthetic", "position": "first", "institutionIds": [] },
+        { "researcherId": null, "rawName": "Unknown Coauthor", "position": "last", "institutionIds": [] }
+      ],
+      "authorsTruncated": false, "largeAuthorList": false,
+      "referenceIds": ["SYN-W1"], "referencesStatus": "present",
+      "provenance": { "provider": "SYNTHETIC FIXTURE", "sourceId": "https://example.invalid/works/SYN-W3", "sourceUrl": "https://example.invalid/works/SYN-W3", "retrievedAt": "2026-01-01T00:00:00Z", "contentHash": "0" }
+    }
+  ],
+  "researchers": [
+    { "id": "SYN-A1", "name": "Ada Synthetic", "orcid": "0000-0000-0000-0001", "workIds": ["SYN-W1", "SYN-W3"], "sourceUrl": "https://example.invalid/authors/SYN-A1" },
+    { "id": "SYN-A2", "name": "Ben Placeholder", "orcid": null, "workIds": ["SYN-W2"], "sourceUrl": "https://example.invalid/authors/SYN-A2" },
+    { "id": "SYN-A3", "name": "Cleo Example", "orcid": null, "workIds": ["SYN-W1"], "sourceUrl": "https://example.invalid/authors/SYN-A3" }
+  ],
+  "institutions": [
+    { "id": "SYN-I1", "name": "Invented Institute", "ror": null, "countryCode": null, "sourceUrl": "https://example.invalid/institutions/SYN-I1" }
+  ],
+  "topics": [
+    { "id": "SYN-T1", "name": "Glaciology (synthetic)", "subfield": null, "field": null, "domain": null, "sourceUrl": "https://example.invalid/topics/SYN-T1" },
+    { "id": "SYN-T2", "name": "Sensor Networks (synthetic)", "subfield": null, "field": null, "domain": null, "sourceUrl": "https://example.invalid/topics/SYN-T2" }
+  ],
+  "references": [
+    { "id": "SYN-R1", "status": "external_unresolved", "sourceUrl": "https://example.invalid/works/SYN-R1", "citedBy": ["SYN-W1", "SYN-W2"] },
+    { "id": "SYN-R2", "status": "external_unresolved", "sourceUrl": "https://example.invalid/works/SYN-R2", "citedBy": ["SYN-W1", "SYN-W2"] },
+    { "id": "SYN-W1", "status": "in_corpus", "sourceUrl": "https://example.invalid/works/SYN-W1", "citedBy": ["SYN-W3"] }
+  ],
+  "edges": [
+    { "id": "E-AU-1", "type": "AUTHORED", "category": "source", "source": "SYN-A1", "target": "SYN-W1", "evidence": { "workIds": ["SYN-W1"], "referenceIds": [], "method": null, "params": null, "overlap": null, "score": null } },
+    { "id": "E-AU-2", "type": "AUTHORED", "category": "source", "source": "SYN-A3", "target": "SYN-W1", "evidence": { "workIds": ["SYN-W1"], "referenceIds": [], "method": null, "params": null, "overlap": null, "score": null } },
+    { "id": "E-AU-3", "type": "AUTHORED", "category": "source", "source": "SYN-A2", "target": "SYN-W2", "evidence": { "workIds": ["SYN-W2"], "referenceIds": [], "method": null, "params": null, "overlap": null, "score": null } },
+    { "id": "E-AU-4", "type": "AUTHORED", "category": "source", "source": "SYN-A1", "target": "SYN-W3", "evidence": { "workIds": ["SYN-W3"], "referenceIds": [], "method": null, "params": null, "overlap": null, "score": null } },
+    { "id": "E-CO-1", "type": "COAUTHORED", "category": "derived", "source": "SYN-A1", "target": "SYN-A3", "evidence": { "workIds": ["SYN-W1"], "referenceIds": [], "method": "coauthorship@1", "params": null, "overlap": 1, "score": null } },
+    { "id": "E-CI-1", "type": "CITES", "category": "source", "source": "SYN-W1", "target": "SYN-R1", "evidence": { "workIds": ["SYN-W1"], "referenceIds": ["SYN-R1"], "method": null, "params": null, "overlap": null, "score": null } },
+    { "id": "E-CI-2", "type": "CITES", "category": "source", "source": "SYN-W1", "target": "SYN-R2", "evidence": { "workIds": ["SYN-W1"], "referenceIds": ["SYN-R2"], "method": null, "params": null, "overlap": null, "score": null } },
+    { "id": "E-CI-3", "type": "CITES", "category": "source", "source": "SYN-W2", "target": "SYN-R1", "evidence": { "workIds": ["SYN-W2"], "referenceIds": ["SYN-R1"], "method": null, "params": null, "overlap": null, "score": null } },
+    { "id": "E-CI-4", "type": "CITES", "category": "source", "source": "SYN-W2", "target": "SYN-R2", "evidence": { "workIds": ["SYN-W2"], "referenceIds": ["SYN-R2"], "method": null, "params": null, "overlap": null, "score": null } },
+    { "id": "E-CI-5", "type": "CITES", "category": "source", "source": "SYN-W3", "target": "SYN-W1", "evidence": { "workIds": ["SYN-W3"], "referenceIds": ["SYN-W1"], "method": null, "params": null, "overlap": null, "score": null } },
+    { "id": "E-SR-1", "type": "SHARES_REFERENCES", "category": "derived", "source": "SYN-W1", "target": "SYN-W2", "evidence": { "workIds": ["SYN-W1", "SYN-W2"], "referenceIds": ["SYN-R1", "SYN-R2"], "method": "jaccard-references@1", "params": { "minOverlap": 1 }, "overlap": 2, "score": 1 } },
+    { "id": "E-TO-1", "type": "HAS_TOPIC", "category": "source", "source": "SYN-W1", "target": "SYN-T1", "evidence": { "workIds": ["SYN-W1"], "referenceIds": [], "method": null, "params": null, "overlap": null, "score": 0.91 } },
+    { "id": "E-CC-1", "type": "CONVERSATION_CANDIDATE", "category": "hypothesis", "source": "SYN-A1", "target": "SYN-A2", "evidence": { "workIds": ["SYN-W1", "SYN-W2"], "referenceIds": ["SYN-R1", "SYN-R2"], "method": "candidates@1", "params": { "minSharedReferences": 1 }, "overlap": 2, "score": 0.8 } }
+  ],
+  "candidates": [
+    {
+      "id": "C-1", "a": "SYN-A1", "b": "SYN-A2", "strength": "shared_references", "sharedReferenceCount": 2, "score": 0.8,
+      "supportingPairs": [ { "workA": "SYN-W1", "workB": "SYN-W2", "sharedReferenceIds": ["SYN-R1", "SYN-R2"], "sharedTopicIds": ["SYN-T1"], "jaccard": 1 } ],
+      "limitations": ["Based only on records in this snapshot.", "Shared references do not imply shared interests or willingness to collaborate."]
+    }
+  ],
+  "layout": {
+    "SYN-A1": [-0.6, -0.2], "SYN-A2": [0.7, -0.3], "SYN-A3": [-0.7, 0.6],
+    "SYN-W1": [-0.2, 0.2], "SYN-W2": [0.4, 0.1], "SYN-W3": [-0.3, -0.7]
+  }
+}

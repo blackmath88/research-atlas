@@ -123,7 +123,10 @@ class OpenAlexClient:
             self.last_budget = {k: v for k, v in resp.headers.items() if k.startswith("x-ratelimit")}
             self.log.append({"url": redact_url(url), "status": resp.status})
             if resp.status == 200:
-                body = json.loads(resp.body)
+                try:
+                    body = json.loads(resp.body)
+                except ValueError:
+                    raise CollectionStop("partial", "HTTP 200 with a non-JSON body") from None
                 self.cache_dir.mkdir(parents=True, exist_ok=True)
                 cached.write_text(json.dumps({"url": redact_url(url), "body": body}, sort_keys=True))
                 return body
@@ -132,10 +135,13 @@ class OpenAlexClient:
                 raise CollectionStop("auth_blocked", f"HTTP {resp.status}: {message}")
             if resp.status == 429:
                 remaining = resp.headers.get("x-ratelimit-remaining-usd")
-                retry_after = float(resp.headers.get("retry-after", "0") or 0)
+                try:
+                    retry_after = float(resp.headers.get("retry-after", "0") or 0)
+                except ValueError:  # HTTP-date form: treat as a long wait
+                    retry_after = float("inf")
                 # Exhausted daily budget: stop; never buy usage or wait hours.
                 if remaining in ("0", "0.0") or retry_after > self.max_backoff_s or attempt >= self.max_retries:
-                    raise CollectionStop("rate_limited", f"HTTP 429 (retry-after {retry_after:.0f}s): {message}")
+                    raise CollectionStop("rate_limited", f"HTTP 429 (retry-after {retry_after}s): {message}")
                 attempt += 1
                 self.sleep(min(self.max_backoff_s, max(retry_after, 2.0**attempt)))
                 continue

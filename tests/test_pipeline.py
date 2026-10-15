@@ -103,6 +103,16 @@ class SnapshotTests(unittest.TestCase):
                     self.assertIn(r, wa["referenceIds"])
                     self.assertIn(r, wb["referenceIds"])
 
+    def test_candidates_exclude_large_list_coauthors(self):
+        big = {a["researcherId"] for a in self.works["SYNW010"]["authorships"] if a["researcherId"]}
+        for c in self.s["candidates"]:
+            self.assertFalse(c["a"] in big and c["b"] in big, c["id"])
+
+    def test_top_k_coupling_per_work(self):
+        from collections import Counter
+        n = Counter(w for e in self.s["edges"] if e["type"] == "SHARES_REFERENCES" for w in (e["source"], e["target"]))
+        self.assertLessEqual(max(n.values()), 5)
+
     def test_deterministic_offline_rebuild(self):
         with tempfile.TemporaryDirectory() as d:
             a, b = Path(d, "a.json"), Path(d, "b.json")
@@ -205,6 +215,13 @@ class ClientTests(unittest.TestCase):
             client = OpenAlexClient(Path(d, "c"), api_key=None, transport=transport, sleep=lambda s: None)
             m = collect(self.cfg(), Path(d, "r"), Path(d, "c"), client=client)
         self.assertEqual(m["status"], "partial")
+
+    def test_http_date_retry_after_and_bad_json_are_classified(self):
+        with tempfile.TemporaryDirectory() as d:
+            client = OpenAlexClient(Path(d, "c"), transport=lambda u, h, t: Response(429, {"retry-after": "Wed, 21 Oct 2026 07:28:00 GMT"}, b"x"), sleep=lambda s: None)
+            self.assertEqual(collect(self.cfg(), Path(d, "r"), Path(d, "c"), client=client)["status"], "rate_limited")
+            client = OpenAlexClient(Path(d, "c2"), transport=lambda u, h, t: Response(200, {}, b"<html>"), sleep=lambda s: None)
+            self.assertEqual(collect(self.cfg(), Path(d, "r2"), Path(d, "c2"), client=client)["status"], "partial")
 
     def test_offline_without_cache_fails_safely(self):
         with tempfile.TemporaryDirectory() as d:

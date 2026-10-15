@@ -59,7 +59,8 @@ works[7]["authorships"].append({"author_position": "last", "raw_author_name": "U
                                 "author": {"id": None, "display_name": None, "orcid": None}, "institutions": []})
 works[8]["topics"] = []
 big = works[9]
-big["authorships"] = [{"author_position": "middle", "raw_author_name": n, "author": {"id": BASE + p, "display_name": n, "orcid": None}, "institutions": []} for p, n in PEOPLE]
+consortium = PEOPLE[:2] + [(f"SYNX{k:02d}", f"Consortium Member {k}") for k in range(1, 15)]
+big["authorships"] = [{"author_position": "middle", "raw_author_name": n, "author": {"id": BASE + p, "display_name": n, "orcid": None}, "institutions": []} for p, n in consortium]
 big["is_authors_truncated"] = True
 works.append(dict(works[0]))                 # duplicate ID
 

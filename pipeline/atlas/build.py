@@ -156,8 +156,10 @@ def build_graph(norm: dict, large_threshold: int) -> tuple[list, list, list, dic
     } for ref, ws in sorted(cited_by.items())]
     # Derived: coauthorship (skip clique expansion for large author lists)
     co = defaultdict(set)
+    any_shared = set()  # every pair with a shared work, including large author lists
     for w in works.values():
         ids = sorted({a["researcherId"] for a in w["authorships"] if a["researcherId"]})
+        any_shared.update(combinations(ids, 2))
         if w["largeAuthorList"]:
             stats["coauthorCliquesSkipped"] += 1
             continue
@@ -184,7 +186,7 @@ def build_graph(norm: dict, large_threshold: int) -> tuple[list, list, list, dic
     per_work = defaultdict(int)
     coupling = []
     for jac, a, b, shared in scored:
-        if per_work[a] >= TOP_K_COUPLING and per_work[b] >= TOP_K_COUPLING:
+        if per_work[a] >= TOP_K_COUPLING or per_work[b] >= TOP_K_COUPLING:
             continue
         per_work[a] += 1
         per_work[b] += 1
@@ -192,19 +194,19 @@ def build_graph(norm: dict, large_threshold: int) -> tuple[list, list, list, dic
         edges.append(edge("SHARES_REFERENCES", "derived", a, b, [a, b], shared, method=COUPLING_METHOD,
                           params={"minShared": MIN_SHARED_REFS, "maxRefDocFreq": MAX_REF_DOC_FREQ, "topK": TOP_K_COUPLING},
                           overlap=len(shared), score=jac))
-    candidates = build_candidates(works, coupling, co)
+    candidates = build_candidates(works, coupling, any_shared)
     for c in candidates:
         edges.append(edge("CONVERSATION_CANDIDATE", "hypothesis", c["a"], c["b"],
-                          [x for p in c["supportingPairs"] for x in (p["workA"], p["workB"])],
-                          [r for p in c["supportingPairs"] for r in p["sharedReferenceIds"]],
+                          {x for p in c["supportingPairs"] for x in (p["workA"], p["workB"])},
+                          {r for p in c["supportingPairs"] for r in p["sharedReferenceIds"]},
                           method=CANDIDATE_METHOD, params={"minShared": MIN_SHARED_REFS},
                           overlap=c["sharedReferenceCount"], score=c["score"]))
     edges.sort(key=lambda e: e["id"])
     return edges, references, candidates, dict(stats)
 
 
-def build_candidates(works: dict, coupling: list, co: dict) -> list:
-    coauthored = set(co)
+def build_candidates(works: dict, coupling: list, any_shared: set) -> list:
+    coauthored = any_shared
     leads = defaultdict(list)
     for jac, wa, wb, shared in coupling:
         A = {a["researcherId"] for a in works[wa]["authorships"] if a["researcherId"]}

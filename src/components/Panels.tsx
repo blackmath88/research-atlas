@@ -85,6 +85,7 @@ export function PersonPanel({
         ))}
       </ul>
       <h3>Coauthors in this snapshot</h3>
+      <p className="muted">Whole-snapshot context: counts ignore the current filters.</p>
       {coauthors.length === 0 ? (
         <p className="muted">No shared publication found in this snapshot.</p>
       ) : (
@@ -317,6 +318,7 @@ export function CandidatePanel({ c, idx, onSelect }: { c: ConversationCandidate;
       <p className="notice">No shared publication found in this snapshot.</p>
       <MethodBlock method={`candidate (${c.strength.replace('_', ' ')})`} params={null} overlap={c.sharedReferenceCount} score={c.score} />
       <h3>Evidence</h3>
+      <p className="muted">Counts, score and supporting pairs below are whole-snapshot context and ignore the current filters.</p>
       {c.supportingPairs.map((p, i) => (
         <div key={i}>
           <SharedPath idx={idx} ra={c.a} wa={p.workA} wb={p.workB} rb={c.b} refs={p.sharedReferenceIds} onSelect={onSelect} />

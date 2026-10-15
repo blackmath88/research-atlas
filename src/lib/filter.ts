@@ -46,6 +46,7 @@ export function edgePasses(
   }
   const ev = edge.evidence.workIds;
   if (ev.length > 0 && !ev.some((w) => passing.has(w))) return false;
+  if (edge.type === 'SHARES_REFERENCES') return ev.every((w) => passing.has(w));
   if (edge.type === 'AUTHORED' || edge.type === 'HAS_TOPIC' || edge.type === 'CITES') {
     for (const end of [edge.source, edge.target]) {
       if (workIds.has(end) && !passing.has(end)) return false;

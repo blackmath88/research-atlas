@@ -21,7 +21,7 @@ describe('computeVisibility', () => {
     expect(v.edges.has('E-AU-3')).toBe(true);
     expect(v.edges.has('E-CO-1')).toBe(false); // only evidence W1
     expect(v.edges.has('E-CI-5')).toBe(false); // CITES W3 -> W1, W1 endpoint fails
-    expect(v.edges.has('E-SR-1')).toBe(true); // W2 still passes
+    expect(v.edges.has('E-SR-1')).toBe(false); // shared-reference edge needs both works (W1 excluded)
     expect(v.edges.has('E-CC-1')).toBe(false); // candidate pair needs both works
     expect(v.candidates.has('C-1')).toBe(false);
   });

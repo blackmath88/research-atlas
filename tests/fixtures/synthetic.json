@@ -1,0 +1,6 @@
+{
+  "id": "synthetic-fixture",
+  "label": "SYNTHETIC FIXTURE (not real data)",
+  "maxWorks": 2000,
+  "largeAuthorListThreshold": 12
+}

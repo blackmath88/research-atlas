@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "collections": [
+    {
+      "id": "basel-2021-2025",
+      "label": "University of Basel, 2021\u20132025",
+      "availability": "not_collected",
+      "snapshotPath": null,
+      "synthetic": false,
+      "note": "Not collected yet: OpenAlex collection is blocked (see docs/BUILD_LEDGER.md)."
+    }
+  ]
+}

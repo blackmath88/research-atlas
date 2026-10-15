@@ -1,0 +1,27 @@
+{
+  "id": "basel-2021-2025",
+  "label": "University of Basel, 2021–2025",
+  "provider": "OpenAlex",
+  "institution": {
+    "searchName": "University of Basel",
+    "expectedRorHint": "https://ror.org/02s6k3f65",
+    "expectedRorHintNote": "Unverified cross-check hint only. A mismatch is recorded as a warning; the resolved source record decides.",
+    "countryCode": "CH",
+    "resolvedOpenAlexId": null,
+    "resolutionNote": "Resolved at collection time from /institutions; never guessed. Null until a real resolution is saved in data/raw/<collection>/institution.json."
+  },
+  "filters": {
+    "fromPublicationDate": "2021-01-01",
+    "toPublicationDate": "2025-12-31"
+  },
+  "sort": "publication_date:desc",
+  "tieBreakNote": "OpenAlex cursor order within equal publication dates is provider-defined; the pipeline re-sorts collected works by (publication_date desc, id asc) and records the cap.",
+  "maxWorks": 2000,
+  "perPage": 100,
+  "maxRequests": 40,
+  "requestIntervalSeconds": 0.25,
+  "maxRetries": 3,
+  "maxBackoffSeconds": 30,
+  "referenceExpansion": { "enabled": false, "maxReferences": 200 },
+  "largeAuthorListThreshold": 25
+}

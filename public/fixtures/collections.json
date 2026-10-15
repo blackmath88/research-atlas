@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "collections": [
+    {
+      "id": "synthetic",
+      "label": "Synthetic fixture",
+      "availability": "published",
+      "snapshotPath": "./fixtures/synthetic/graph.json",
+      "synthetic": true,
+      "note": "Invented test records for automated tests."
+    },
+    {
+      "id": "basel",
+      "label": "Basel (not collected)",
+      "availability": "not_collected",
+      "snapshotPath": null,
+      "synthetic": false,
+      "note": "No real snapshot has been collected yet."
+    }
+  ]
+}

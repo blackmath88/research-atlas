@@ -4,7 +4,23 @@
 
 Research Atlas is an independent map of open scholarly data. Explore people, publications, topics and institutions; inspect established relationships; discover possible conversations with evidence you can follow.
 
-**Status: product and architecture brief. No application or imported dataset is implemented in this repository yet.**
+**Status: first slice implemented: pipeline, graph, static app and tests. No real OpenAlex snapshot is published yet, because collection was blocked by the provider's keyless budget (see [docs/BUILD_LEDGER.md](docs/BUILD_LEDGER.md)). The only data the app currently shows is a clearly labelled synthetic test fixture.**
+
+## Run
+
+```bash
+npm ci
+npm run dev                     # app; open with ?data=./fixtures/collections.json for the labelled synthetic fixture
+PYTHONPATH=pipeline python3 -m unittest discover -s tests     # pipeline tests (offline)
+npm run typecheck && npm test && npm run build && npm run e2e  # UI checks against the production build
+
+# Real data (needs OPENALEX_API_KEY in the environment, never in files):
+PYTHONPATH=pipeline python3 -m atlas collect configs/collections/basel.json   # bounded, cached, resumable
+PYTHONPATH=pipeline python3 -m atlas build configs/collections/basel.json     # offline, deterministic rebuild
+PYTHONPATH=pipeline python3 -m atlas index                                    # refresh public/data/collections.json
+```
+
+Method: [docs/DATA_METHOD.md](docs/DATA_METHOD.md). Verification: [docs/VALIDATION.md](docs/VALIDATION.md).
 
 ## Product decisions
 

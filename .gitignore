@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.*
+data/cache/
+__pycache__/
+*.pyc
+test-results/
+playwright-report/
+.claude/worktrees/
+tsconfig.tsbuildinfo

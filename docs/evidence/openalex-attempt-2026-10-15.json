@@ -1,0 +1,63 @@
+{
+  "attribution": "Metadata from OpenAlex (https://openalex.org), CC0.",
+  "budgetHeaders": {
+    "x-ratelimit-cost-required-usd": "0.001",
+    "x-ratelimit-credits-required": "10",
+    "x-ratelimit-limit": "1000",
+    "x-ratelimit-limit-usd": "0.1",
+    "x-ratelimit-onetime-remaining": "0",
+    "x-ratelimit-prepaid-remaining-usd": "0",
+    "x-ratelimit-remaining": "0",
+    "x-ratelimit-remaining-usd": "0",
+    "x-ratelimit-reset": "13691"
+  },
+  "cacheHits": 0,
+  "collectionId": "basel-2021-2025",
+  "provider": "OpenAlex",
+  "providerTotal": null,
+  "query": {
+    "config": {
+      "filters": {
+        "fromPublicationDate": "2021-01-01",
+        "toPublicationDate": "2025-12-31"
+      },
+      "id": "basel-2021-2025",
+      "institution": {
+        "countryCode": "CH",
+        "expectedRorHint": "https://ror.org/02s6k3f65",
+        "expectedRorHintNote": "Unverified cross-check hint only. A mismatch is recorded as a warning; the resolved source record decides.",
+        "resolutionNote": "Resolved at collection time from /institutions; never guessed. Null until a real resolution is saved in data/raw/<collection>/institution.json.",
+        "resolvedOpenAlexId": null,
+        "searchName": "University of Basel"
+      },
+      "label": "University of Basel, 2021\u20132025",
+      "largeAuthorListThreshold": 25,
+      "maxBackoffSeconds": 30,
+      "maxRequests": 40,
+      "maxRetries": 3,
+      "maxWorks": 2000,
+      "perPage": 100,
+      "provider": "OpenAlex",
+      "referenceExpansion": {
+        "enabled": false,
+        "maxReferences": 200
+      },
+      "requestIntervalSeconds": 0.25,
+      "sort": "publication_date:desc",
+      "tieBreakNote": "OpenAlex cursor order within equal publication dates is provider-defined; the pipeline re-sorts collected works by (publication_date desc, id asc) and records the cap."
+    },
+    "institutionId": null
+  },
+  "requests": [
+    {
+      "status": 429,
+      "url": "https://api.openalex.org/institutions?filter=country_code%3ACH&per-page=10&search=University+of+Basel"
+    }
+  ],
+  "retrievedAt": "2026-10-15T20:11:48+00:00",
+  "status": "rate_limited",
+  "statusDetail": "HTTP 429 (retry-after 13691s): {\"error\":\"Rate limit exceeded\",\"message\":\"Insufficient budget. This request has no API key, so it counts against the free daily budget shared by everyone on your network's IP address, and that budget is used up ($0 remaining; resets at midnight UTC). Use your own key instead: add ?api_key=REDACTED to the URL, or send it as an \\\"Authorization: Bearer YOUR_KEY\\\" header. Keys are free and have their ",
+  "synthetic": false,
+  "warnings": [],
+  "workHashes": {}
+}

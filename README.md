@@ -1,6 +1,15 @@
+<!-- BEGIN public-repo-header -->
+<div align="center">
+
 # Research Atlas
 
 **Explore research. Discover connections. Find people.**
+
+<a href="https://github.com/blackmath88/research-atlas/tree/main/docs"><img alt="Documentation" src="https://img.shields.io/badge/docs-guide-16796f?style=flat"></a>
+<a href="https://github.com/blackmath88/research-atlas/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/blackmath88/research-atlas?style=flat&amp;color=737373"></a>
+
+</div>
+<!-- END public-repo-header -->
 
 Research Atlas is an independent map of open scholarly data. Explore people, publications, topics and institutions; inspect established relationships; discover possible conversations with evidence you can follow.
 
